@@ -37,6 +37,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -82,7 +84,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(520, 16);
+            this.button3.Location = new System.Drawing.Point(336, 72);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(80, 48);
             this.button3.TabIndex = 5;
@@ -92,7 +94,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(32, 216);
+            this.button4.Location = new System.Drawing.Point(32, 312);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(288, 40);
             this.button4.TabIndex = 6;
@@ -104,12 +106,13 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(328, 224);
+            this.label3.Location = new System.Drawing.Point(320, 320);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(204, 25);
             this.label3.TabIndex = 7;
             this.label3.Text = "Next Upgrade: 1000";
             this.label3.Visible = false;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // backgroundWorker1
             // 
@@ -118,11 +121,38 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(32, 208);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(480, 88);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.Text = "Double click doubles the effectiveness of your click. Currently, each click count" +
+    "s as 1 click(s).";
+            this.textBox1.Visible = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(32, 360);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(488, 88);
+            this.textBox2.TabIndex = 9;
+            this.textBox2.Text = "Auto Click clicks for you. Currently, Auto Click clicks 1 time(s) every 1 second." +
+    "";
+            this.textBox2.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 341);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(533, 462);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -150,6 +180,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label3;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

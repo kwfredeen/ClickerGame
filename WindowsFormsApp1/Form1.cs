@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        string[] savelines = { "CLICKS = 0", "DTAP = 0", "DTAPU = 50", "ACLICK = 0", "ACLICKU = 1000", "ASPEED = 0" };
+        string[] savelines = { "CLICKS = 0", "DTAP = 0", "DTAPU = 50", "ACLICK = 0", "ACLICKU = 100", "ASPEED = 0" };
         string savepath = "save.txt";
 
         Int64 clicks = 0;
@@ -25,9 +25,9 @@ namespace WindowsFormsApp1
         int DTapUpMult = 2; //Change as balance requires
 
         int AClick = 0;
-        int AClickUpCost = 1000; //Change as balance requires
-        int AclickUpInit = 1000;
-        int AClickUpMult = 10; //Change as balance requires
+        int AClickUpCost = 100; //Change as balance requires
+        int AclickUpInit = 100;
+        int AClickUpMult = 5; //Change as balance requires
 
         public Form1()
         {
@@ -79,18 +79,34 @@ namespace WindowsFormsApp1
 
             button2.Text = "Double Click: " + DTap.ToString();
             label2.Text = "Next Upgrade: " + DTapUpCost.ToString();
+            int clicksPerClick = (int) Math.Pow(2, DTap);
+            textBox1.Text = "Double click doubles the effectiveness of your click. Currently, each click counts as " + clicksPerClick.ToString() + " click(s).";
             if (DTap > 0 | clicks > DTapUpInit)
             {
                 button2.Visible = true;
                 label2.Visible = true;
+                textBox1.Visible = true;
             }
 
             button4.Text = "Auto Click: " + AClick.ToString();
             label3.Text = "Next Upgrade: " + AClickUpCost.ToString();
+
+            int clicksPerTick;
+            if (AClick == 0)
+            {
+                clicksPerTick = 0;
+            }
+            else
+            {
+                clicksPerTick = (int)Math.Pow(2, AClick - 1);
+            }
+            textBox2.Text = "Auto Click clicks for you. Currently, Auto Click clicks " + clicksPerTick.ToString() + " time(s) every 1 second(s).";
+
             if (AClick > 0 | clicks > AclickUpInit)
             {
                 button4.Visible = true;
                 label3.Visible = true;
+                textBox2.Visible = true;
             }
 
         }
@@ -107,11 +123,13 @@ namespace WindowsFormsApp1
             {
                 button2.Visible = true;
                 label2.Visible = true;
+                textBox1.Visible = true;
             }
             if (clicks >= AclickUpInit)
             {
                 button4.Visible = true;
                 label3.Visible = true;
+                textBox2.Visible = true;
             }
 
             label1.Text = "Count: " + clicks.ToString();
@@ -132,6 +150,8 @@ namespace WindowsFormsApp1
             label1.Text = "Count: " + clicks.ToString();
             button2.Text = "Double Click: " + DTap.ToString();
             label2.Text = "Next Upgrade: " + DTapUpCost.ToString();
+            int clicksPerClick = (int)Math.Pow(2, DTap);
+            textBox1.Text = "Double click doubles the effectiveness of your click. Currently, each click counts as " + clicksPerClick.ToString() + " click(s).";
         }
 
         private void SaveClick(object sender, EventArgs e)
@@ -165,6 +185,17 @@ namespace WindowsFormsApp1
             label1.Text = "Count: " + clicks.ToString();
             button4.Text = "Auto Click: " + AClick.ToString();
             label3.Text = "Next Uprade: " + AClickUpCost.ToString();
+
+            int clicksPerTick;
+            if (AClick == 0)
+            {
+                clicksPerTick = 0;
+            }
+            else
+            {
+                clicksPerTick = (int)Math.Pow(2, AClick - 1);
+            }
+            textBox2.Text = "Auto Click clicks for you. Currently, Auto Click clicks " + clicksPerTick.ToString() + " time(s) every 1 second(s).";
         }
             
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -195,6 +226,11 @@ namespace WindowsFormsApp1
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             label1.Text = "Count: " + clicks.ToString();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
