@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         string[] savelines = { "CLICKS = 0", "DTAP = 0", "DTAPU = 50", "ACLICK = 0", "ACLICKU = 1000", "ASPEED = 0" };
+        string savepath = "save.txt";
 
         Int64 clicks = 0;
 
@@ -48,14 +49,14 @@ namespace WindowsFormsApp1
             Console.WriteLine("Console initialized.");
 
             //Check if a savefile exists
-            if (!System.IO.File.Exists(@"..\save.txt"))
+            if (!System.IO.File.Exists(@savepath))
             {
                 //if not, create one
-                System.IO.File.WriteAllLines(@"..\save.txt", savelines);
+                System.IO.File.WriteAllLines(@savepath, savelines);
                 Console.WriteLine("Created new save file.");
             }
 
-            savelines = System.IO.File.ReadAllLines(@"..\save.txt");
+            savelines = System.IO.File.ReadAllLines(@savepath);
 
             //load clicks
             clicks = processLine(0);
@@ -141,7 +142,7 @@ namespace WindowsFormsApp1
             savelines[3] = "ACLICK = " + AClick.ToString();
             savelines[4] = "ACLICKU = " + AClickUpCost.ToString();
 
-            System.IO.File.WriteAllLines(@"..\save.txt", savelines);
+            System.IO.File.WriteAllLines(@savepath, savelines);
         }
 
         private void label1_Click(object sender, EventArgs e)
