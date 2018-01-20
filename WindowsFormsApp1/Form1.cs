@@ -14,10 +14,6 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
-
         string[] savelines = { "CLICKS = 0", "DTAP = 0", "DTAPU = 50", "ACLICK = 0", "ACLICKU = 1000", "ASPEED = 0" };
 
         Int64 clicks = 0;
